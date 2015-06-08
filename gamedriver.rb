@@ -84,7 +84,7 @@ class GameDriver
   # Initializes the correct game object based on the setting of our @game_choice attribute.  Passes the @player_one_name,
   # @player_two_name, and @best_of attributes to the corresponding game class.
   #
-  # Returns
+  # Returns 0, the last expression evaluated by the full_game method.
   def start_game
     if @game_choice == "rps"
       game1 = Game.new(@player_one, @player_two, @best_of)
