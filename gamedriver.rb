@@ -88,9 +88,19 @@ class GameDriver
   def start_game
     if @game_choice == "rps"
       game1 = Game.new(@player_one, @player_two, @best_of)
+      if @player_one.name.downcase == "computer"
+        @player_one.set_moves_rps
+      elsif @player_two.name.downcase == "computer"
+        @player_two.set_moves_rps
+      end
       game1.full_game
     elsif @game_choice == "rpsls"
       game1 = RPSLSGame.new(@player_one, @player_two, @best_of)
+      if @player_one.name.downcase == "computer"
+        @player_one.set_move_set_rpsls
+      elsif @player_two.name.downcase == "computer"
+        @player_two.set_move_set_rpsls
+      end
       game1.full_game
     end
   end
