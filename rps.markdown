@@ -163,6 +163,10 @@ and
 
 as RPSLS is a subclass of RPS, it inherits everything we don't specifically define differently from the superclass (in this case, Game).
 
+The biggest "ah-ha" moment of this project was discussing my refactoring issues, in particular making the Game handle a multi-round
+game. Sumeet told me that it's "not in the nature of Game to run a game". As weird as it sounded, it clicked that I was still trying to
+use Game outside of it's purpose, namely being a judge and defining the moveset of the game, and it helped immensely.
+
 # GameDriver
 
 Our GameDriver class is where we plug our code in and acts as a driver for our app.rb interface with the user.  Usually we wouldn't use 
