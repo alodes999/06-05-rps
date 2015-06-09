@@ -37,22 +37,16 @@ class RPSLSGame < Game
     if @allowed_moves.index(@player_one.move) == @allowed_moves.index(@player_two.move)
       tie_round
     elsif (@allowed_moves.index(@player_one.move) - 1) == @allowed_moves.index(@player_two.move)
-      @player_one.win_round
       player_one_win
     elsif @allowed_moves.index(@player_one.move) == 0 && @allowed_moves.index(@player_two.move) == 4
-      @player_one.win_round
       player_one_win
     elsif (@allowed_moves.index(@player_one.move) + 2) == @allowed_moves.index(@player_two.move)
-      @player_one.win_round
       player_one_win
     elsif @allowed_moves.index(@player_one.move) == 3 && @allowed_moves.index(@player_two.move) == 0
-      @player_one.win_round
       player_one_win
     elsif @allowed_moves.index(@player_one.move) == 4 && @allowed_moves.index(@player_two.move) == 1
-      @player_one.win
-      player_one_win_speech
+      player_one_win
     else
-      @player_two.win_round
       player_two_win
     end
   end

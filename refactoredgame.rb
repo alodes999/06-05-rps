@@ -32,26 +32,13 @@ class Game
   # This method doesn't explicitly return anything, and implicitly returns nil
   def round
     if @allowed_moves.index(@player_one.move) == @allowed_moves.index(@player_two.move)
-      tie_round
+      0
     elsif (@allowed_moves.index(@player_one.move) - 1) == @allowed_moves.index(@player_two.move)
-      player_one_win
+      1
     elsif @allowed_moves.index(@player_one.move) == 0 && @allowed_moves.index(@player_two.move) == 2
-      player_one_win
+      1
     else
-      player_two_win
+      2
     end
   end
-  
-  def player_one_win
-    return 1
-  end
-  
-  def player_two_win
-    return 2
-  end
-  
-  def tie_round
-    return 0
-  end
- 
 end

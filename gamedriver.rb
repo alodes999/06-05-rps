@@ -26,7 +26,7 @@ class GameDriver
   #
   # Returns the object created.
   def set_player_one
-    puts "Player 1, please enter your name, or Computer for a computer player."
+    puts "Player 1, please enter your name."
     p1name = gets.chomp
     @player_one = Player.new(p1name)
   end
@@ -36,7 +36,7 @@ class GameDriver
   #
   # Returns the object created
   def set_player_two
-    puts "Player 2, please enter your name, or Computer for a computer player."
+    puts "Player 2, please enter your name."
     p2name = gets.chomp
     @player_two = Player.new(p2name)
   end
@@ -84,8 +84,14 @@ class GameDriver
       @running_game = RPSLSGame.new(@player_one, @player_two, @best_of)
     end
   end
-  
-  def get_moves
+  # This method defines the moves and checks to see if they are in our allowed_moves list.  If it is,
+  # it returns true and sets the player's move to the entered value.
+  #
+  # This method accepts no arguments, passing the user input to the Game class used
+  # and getting a boolean answer. 
+  #
+  # This method returns a String containing the valid move.
+  def get_moves_player_one
     puts "#{@player_one.name}, please enter a move:"
     p1move = gets.chomp
     @running_game.check_move(p1move)
@@ -95,7 +101,15 @@ class GameDriver
       @running_game.check_move(p1move)
     end
     @player_one.move = p1move
-
+  end
+  # This method defines the moves and checks to see if they are in our allowed_moves list.  If it is,
+  # it returns true and sets the player's move to the entered value.
+  #
+  # This method accepts no arguments, passing the user input to the Game class used
+  # and getting a boolean answer. 
+  #
+  # This method returns a String containing the valid move.
+  def get_moves_player_two
     puts "#{@player_two.name}, please enter a move:"
     p2move = gets.chomp
     @running_game.check_move(p2move)
@@ -106,9 +120,16 @@ class GameDriver
     end
     @player_two.move = p2move
   end
-  
+  # This method calls the two get_moves methods to set the moves for each player, then runs them into
+  # our Game class to verify the round winner.  The Game class returns an integer which corresponds to
+  # what we put to the user.
+  #
+  # This method accepts no arguments
+  #
+  # This method returns nil, as the last statement evaluated is a puts
   def run_round
-    get_moves
+    get_moves_player_one
+    get_moves_player_two
     @running_game.round
     if @running_game.round == 0
       puts "This round is a tie!  Both players selected #{@player_one.move}"
@@ -121,11 +142,15 @@ class GameDriver
     end
     show_score
   end
-  
+  # This is a puts method for our run_round class.
   def show_score
     puts "The score is #{@player_one.name}: #{@player_one.score}, and #{@player_two.name}: #{@player_two.score}"
   end
-  
+  # This method runs a defined number of rounds to do a best of "n"th game.
+  #
+  # This method accepts no arguments
+  #
+  # This method implicitly returns 0, the value the score is reset to.
   def run_full_game
     until @player_one.score == @running_game.rounds_to_win || @player_two.score == @running_game.rounds_to_win
       run_round
