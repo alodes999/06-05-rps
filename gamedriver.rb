@@ -1,7 +1,5 @@
 # This is our GameDriver class.  It is like a "launcher" for any game we want to run.  We instantiate this class, and it
 # gets the input needed to pick the correct game class and run that.
-require_relative "rpslsgame"
-require_relative "computerplayer"
 class GameDriver
   # This is our initialize method for the GameDriver class.  We are accepting no arguments when initializing each object, 
   # because we are getting the attributes from the methods we run.  This object is the "launcher" of whatever game we decide
@@ -29,7 +27,6 @@ class GameDriver
     puts "Player 1, please enter your name, or Computer for a computer player."
     p1name = gets.chomp
     @player_one = Player.new(p1name)
-    end
   end
   # This method sets our second player.  Getting user input will set the corresponding attribute for our object.
   #
@@ -40,7 +37,6 @@ class GameDriver
     puts "Player 2, please enter your name, or Computer for a computer player."
     p2name = gets.chomp
     @player_two = Player.new(p2name)
-    end
   end
   # This method sets our game choice.  User input sets the corresponding attribute for our object.  Checks to see
   # if the entered name is a valid game choice before setting our attribute
@@ -89,9 +85,7 @@ class GameDriver
   
   def get_moves
     puts "#{@player_one.name}, please enter a move:"
-    gets.chomp
-
-    p1move = get_player_one_move
+    p1move = gets.chomp
     game1.check_move(p1move)
     while false
       puts "That was an invalid move.  Please re-enter a move:"
@@ -101,9 +95,7 @@ class GameDriver
     @player_one.move = p1move
 
     puts "#{@player_two.name}, please enter a move:"
-    gets.chomp
-
-    p2move = get_player_two_move
+    p2move = gets.chomp
     game1.check_move(p2move)
     while false
       puts "That was an invalid move.  Please re-enter a move:"

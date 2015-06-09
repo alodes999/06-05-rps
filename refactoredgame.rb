@@ -1,5 +1,4 @@
 # This contains the Game class for our RPS program.
-require_relative "player"
 class Game
 
   attr_reader :rounds_to_win, :allowed_moves

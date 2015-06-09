@@ -5,7 +5,6 @@
 # This subclass takes all of the same arguments as the superclass, player_one_name, player_two_name, and best_of, and sets
 # the same attributes, @rounds_to_win, @player_one, and @player_two, as well as a new @allowed_moves attribute, to account
 # for the increased move set for this version.
-require_relative "game"
 class RPSLSGame < Game
   
   attr_reader :rounds_to_win, :allowed_moves
