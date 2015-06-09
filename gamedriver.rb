@@ -28,10 +28,7 @@ class GameDriver
   def set_player_one
     puts "Player 1, please enter your name, or Computer for a computer player."
     p1name = gets.chomp
-    if p1name.downcase == "computer"
-      @player_one = ComputerPlayer.new
-    else
-      @player_one = Player.new(p1name)
+    @player_one = Player.new(p1name)
     end
   end
   # This method sets our second player.  Getting user input will set the corresponding attribute for our object.
@@ -42,10 +39,7 @@ class GameDriver
   def set_player_two
     puts "Player 2, please enter your name, or Computer for a computer player."
     p2name = gets.chomp
-    if p2name.downcase == "computer"
-      @player_two = ComputerPlayer.new
-    else
-      @player_two = Player.new(p2name)
+    @player_two = Player.new(p2name)
     end
   end
   # This method sets our game choice.  User input sets the corresponding attribute for our object.  Checks to see
@@ -88,19 +82,9 @@ class GameDriver
   def start_game
     if @game_choice == "rps"
       game1 = Game.new(@player_one, @player_two, @best_of)
-      if @player_one.name.downcase == "computer"
-        @player_one.set_moves_rps
-      elsif @player_two.name.downcase == "computer"
-        @player_two.set_moves_rps
-      end
       game1.full_game
     elsif @game_choice == "rpsls"
       game1 = RPSLSGame.new(@player_one, @player_two, @best_of)
-      if @player_one.name.downcase == "computer"
-        @player_one.set_move_set_rpsls
-      elsif @player_two.name.downcase == "computer"
-        @player_two.set_move_set_rpsls
-      end
       game1.full_game
     end
   end

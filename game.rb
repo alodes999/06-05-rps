@@ -77,21 +77,17 @@ class Game
     puts "#{@player_one.name}, please enter a move:"
     gets.chomp
   end
-  # Method that checks to make sure the user input for player one is valid, and sets player one's move to this input, or
-  # if the player is a Computer player, picks a random move from the allowed_move list.
+  # Method that checks to make sure the user input for player one is valid, and sets player one's move to this input.
   #
   # Returns the string with the valid move
   def set_player_one_move
-    if @player_one.name == "Computer"
-      @player_one.move = @allowed_moves.sample
-    else
-      p1move = get_player_one_move
+    p1move = get_player_one_move
+    check_move(p1move)
+    while check_move(p1move) == false
+      p1move = re_get_player_move
       check_move(p1move)
-      while check_move(p1move) == false
-        p1move = re_get_player_move
-        check_move(p1move)
-      end
-      @player_one.move = p1move
+    end
+    @player_one.move = p1move
     end
   end
   # Method that sets the user input for the move for player two in our game
@@ -101,22 +97,17 @@ class Game
     puts "#{@player_two.name}, please enter a move:"
     gets.chomp
   end
-  # Method that checks to make sure the user input for player two is valid, and sets player two's move to this input, or
-  # if the player is a Computer player, picks a random move from the allowed_move list.
+  # Method that checks to make sure the user input for player two is valid, and sets player two's move to this input.
   #
   # Returns the string with the valid move
   def set_player_two_move
-    if @player_two.name == "Computer"
-      @player_two.move = @allowed_moves.sample
-    else
-      p2move = get_player_two_move
+    p2move = get_player_two_move
+    check_move(p2move)
+    while check_move(p2move) == false
+      p2move = re_get_player_move
       check_move(p2move)
-      while check_move(p2move) == false
-        p2move = re_get_player_move
-        check_move(p2move)
-      end
-      @player_two.move = p2move
     end
+    @player_two.move = p2move
   end
   # Method that sets the user input for any incorrect move entered in our game
   #
