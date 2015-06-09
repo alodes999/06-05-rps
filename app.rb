@@ -14,6 +14,8 @@ gd1.choose_game
 gd1.rounds
 # runs the correct game object based on our input
 gd1.start_game
+binding.pry
+
 gd1.run_round
 
 # asks if there are more games to play, looping and adding score for games won.

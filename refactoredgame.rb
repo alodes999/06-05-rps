@@ -34,13 +34,10 @@ class Game
     if @allowed_moves.index(@player_one.move) == @allowed_moves.index(@player_two.move)
       tie_round
     elsif (@allowed_moves.index(@player_one.move) - 1) == @allowed_moves.index(@player_two.move)
-      @player_one.win_round
       player_one_win
     elsif @allowed_moves.index(@player_one.move) == 0 && @allowed_moves.index(@player_two.move) == 2
-      @player_one.win_round
       player_one_win
     else
-      @player_two.win_round
       player_two_win
     end
   end

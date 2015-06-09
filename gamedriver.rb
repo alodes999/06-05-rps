@@ -1,6 +1,8 @@
 # This is our GameDriver class.  It is like a "launcher" for any game we want to run.  We instantiate this class, and it
 # gets the input needed to pick the correct game class and run that.
 class GameDriver
+  
+  attr_accessor :running_game, :player_one, :player_two
   # This is our initialize method for the GameDriver class.  We are accepting no arguments when initializing each object, 
   # because we are getting the attributes from the methods we run.  This object is the "launcher" of whatever game we decide
   # we want to run.
@@ -77,43 +79,46 @@ class GameDriver
   # Returns a new Game object, defined from the attributes.
   def start_game
     if @game_choice == "rps"
-      game1 = Game.new(@player_one, @player_two, @best_of)
+      @running_game = Game.new(@player_one, @player_two, @best_of)
     elsif @game_choice == "rpsls"
-      game1 = RPSLSGame.new(@player_one, @player_two, @best_of)
+      @running_game = RPSLSGame.new(@player_one, @player_two, @best_of)
     end
   end
   
   def get_moves
     puts "#{@player_one.name}, please enter a move:"
     p1move = gets.chomp
-    game1.check_move(p1move)
-    while false
+    @running_game.check_move(p1move)
+    while @running_game.check_move(p1move) == false
       puts "That was an invalid move.  Please re-enter a move:"
       p1move = gets.chomp
-      game1.check_move(p1move)
+      @running_game.check_move(p1move)
     end
     @player_one.move = p1move
 
     puts "#{@player_two.name}, please enter a move:"
     p2move = gets.chomp
-    game1.check_move(p2move)
-    while false
+    @running_game.check_move(p2move)
+    while @running_game.check_move(p2move) == false
       puts "That was an invalid move.  Please re-enter a move:"
       p2move = gets.chomp
-      game1.check_move(p2move)
+      @running_game.check_move(p2move)
     end
     @player_two.move = p2move
   end
   
   def run_round
     get_moves
-    game1.round
-    if 0
+    binding.pry
+    @running_game.round
+    if @running_game.round == 0
       puts "This round is a tie!  Both players selected #{@player_one.move}"
-    elsif 1
+    elsif @running_game.round == 1
       puts "#{@player_one.move} beats #{@player_two.move}! #{@player_one.name} wins this round!"
+      @player_one.win_round
     else
       puts "#{@player_two.move} beats #{@player_one.move}! #{@player_two.name} wins this round!"
+      @player_two.win_round
     end
     show_score
   end
