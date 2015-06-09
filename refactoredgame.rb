@@ -41,28 +41,6 @@ class Game
       player_two_win
     end
   end
-  # This method is our nth-round game method.  It takes the value of rounds_to_win and loops the method until one of the players wins
-  # that many rounds.  It also grabs the user input for moves through input methods to get the strings required.  This does allow
-  # single round games as well, since rounds_to_win in that case would be 1
-  #
-  # This method takes no arguments, only reading existing attributes and returns from other methods getting user input
-  #
-  # This method doesn't explicitly return anything, and implicitly returns 0, the last expression, setting the player.score to 0
-  def full_game
-    until @player_one.score == @rounds_to_win || @player_two.score == @rounds_to_win
-      round
-    end
-    
-    if @player_one.score == @rounds_to_win
-      @player_one.win
-      player_one_win_game
-    elsif @player_two.score == @rounds_to_win
-      @player_two.win
-      player_two_win_game
-    end
-    @player_one.reset_score
-    @player_two.reset_score
-  end
   
   def player_one_win
     return 1
@@ -75,25 +53,5 @@ class Game
   def tie_round
     return 0
   end
-  
-  
-  
-  
-  
-
-
-  # Output method for our game winner.
-  #
-  # Returns nil
-  def player_one_win_game
-    puts "#{@player_one.name} wins the game!"
-    puts "#{@player_one.name} has won #{@player_one.win_total} games so far!"
-  end
-  #Output method for our game winner.
-  #
-  # Returns nil
-  def player_two_win_game
-    puts "#{@player_two.name} wins the game!"
-    puts "#{@player_two.name} has won #{@player_two.win_total} games so far!"
-  end
+ 
 end

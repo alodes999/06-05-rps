@@ -14,9 +14,8 @@ gd1.choose_game
 gd1.rounds
 # runs the correct game object based on our input
 gd1.start_game
-binding.pry
 
-gd1.run_round
+gd1.run_full_game
 
 # asks if there are more games to play, looping and adding score for games won.
 puts "Would you like to play another game?"
@@ -27,7 +26,7 @@ while choice == "yes"
   gd1.rounds
   
   gd1.start_game
-  gd1.run_round
+  gd1.run_full_game
   
   puts "Would you like to play another game?"
   choice = gets.chomp.downcase

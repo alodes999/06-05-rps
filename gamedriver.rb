@@ -127,5 +127,21 @@ class GameDriver
     puts "The score is #{@player_one.name}: #{@player_one.score}, and #{@player_two.name}: #{@player_two.score}"
   end
   
-  
+  def run_full_game
+    until @player_one.score == @running_game.rounds_to_win || @player_two.score == @running_game.rounds_to_win
+      run_round
+    end
+    
+    if @player_one.score == @running_game.rounds_to_win
+      @player_one.win
+      puts "#{@player_one.name} wins the game!"
+      puts "#{@player_one.name} has won #{@player_one.win_total} games so far!"
+    elsif @player_two.score == @running_game.rounds_to_win
+      @player_two.win
+      puts "#{@player_two.name} wins the game!"
+      puts "#{@player_two.name} has won #{@player_two.win_total} games so far!"
+    end
+    @player_one.reset_score
+    @player_two.reset_score
+  end  
 end
