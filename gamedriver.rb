@@ -78,14 +78,57 @@ class GameDriver
   # Initializes the correct game object based on the setting of our @game_choice attribute.  Passes the @player_one_name,
   # @player_two_name, and @best_of attributes to the corresponding game class.
   #
-  # Returns 0, the last expression evaluated by the full_game method.
+  # Returns a new Game object, defined from the attributes.
   def start_game
     if @game_choice == "rps"
       game1 = Game.new(@player_one, @player_two, @best_of)
-      game1.full_game
     elsif @game_choice == "rpsls"
       game1 = RPSLSGame.new(@player_one, @player_two, @best_of)
-      game1.full_game
     end
   end
+  
+  def get_moves
+    puts "#{@player_one.name}, please enter a move:"
+    gets.chomp
+
+    p1move = get_player_one_move
+    game1.check_move(p1move)
+    while false
+      puts "That was an invalid move.  Please re-enter a move:"
+      p1move = gets.chomp
+      game1.check_move(p1move)
+    end
+    @player_one.move = p1move
+
+    puts "#{@player_two.name}, please enter a move:"
+    gets.chomp
+
+    p2move = get_player_two_move
+    game1.check_move(p2move)
+    while false
+      puts "That was an invalid move.  Please re-enter a move:"
+      p2move = gets.chomp
+      game1.check_move(p2move)
+    end
+    @player_two.move = p2move
+  end
+  
+  def run_round
+    get_moves
+    game1.round
+    if 0
+      puts "This round is a tie!  Both players selected #{@player_one.move}"
+    elsif 1
+      puts "#{@player_one.move} beats #{@player_two.move}! #{@player_one.name} wins this round!"
+    else
+      puts "#{@player_two.move} beats #{@player_one.move}! #{@player_two.name} wins this round!"
+    end
+    show_score
+  end
+  
+  def show_score
+    puts "The score is #{@player_one.name}: #{@player_one.score}, and #{@player_two.name}: #{@player_two.score}"
+  end
+  
+  
 end
