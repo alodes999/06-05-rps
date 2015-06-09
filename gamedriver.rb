@@ -109,7 +109,6 @@ class GameDriver
   
   def run_round
     get_moves
-    binding.pry
     @running_game.round
     if @running_game.round == 0
       puts "This round is a tie!  Both players selected #{@player_one.move}"
