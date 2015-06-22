@@ -5,7 +5,7 @@ designed to test our ability to refactor code and to push us to apply SRP.  As t
 basic RPS game, to adding thorough documentation, and then making sure our classes looked clean and behaved as a class should.  Let's
 start going over the specific classes.
 
-# Player
+## Player
 
 Our player class is our blueprint for each Player object we use.  My class has 4 attributes, and 3 methods, designed to modify our
 attributes. Our class is initialized with 4 attributes.  they are:
@@ -64,7 +64,7 @@ having to open it up as an accessor.
 
 ```
 
-# Game
+## Game
 
 Our Game class is our next class.  This class caused me the most difficulty in this assignment, because of the way I decided to factor
 the code to begin with.  Going back and taking out the gets/puts methods caused me pain, but I believe the final product looks good and
@@ -167,7 +167,7 @@ The biggest "ah-ha" moment of this project was discussing my refactoring issues,
 game. Sumeet told me that it's "not in the nature of Game to run a game". As weird as it sounded, it clicked that I was still trying to
 use Game outside of it's purpose, namely being a judge and defining the moveset of the game, and it helped immensely.
 
-# GameDriver
+## GameDriver
 
 Our GameDriver class is where we plug our code in and acts as a driver for our app.rb interface with the user.  Usually we wouldn't use 
 puts and gets in classes, but it was acceptable here because this is where we are wanting to grab our information to plug into our 
